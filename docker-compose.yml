@@ -28,7 +28,7 @@ services:
       - "6379:6379"
   frontend:
     build: 
-      dockerfile: Dockerfile
+      dockerfile: local.Dockerfile
       context: ./frontend
     container_name: node_front
     command: bash -c "cp -r /usr/src/cache/node_modules/. /node_modules/ && npm start"

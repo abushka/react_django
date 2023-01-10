@@ -12,8 +12,6 @@ WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN apk add --no-cache bash
-
 RUN pip install --upgrade pip
 
 # install dependencies
@@ -31,9 +29,6 @@ FROM python:3.9.6-alpine
 # create directory for the app user
 RUN mkdir -p /home/app
 
-# create the app user
-RUN addgroup -S app && adduser -S app -G app
-
 # create the appropriate directories
 ENV HOME=/home/app
 ENV APP_HOME=/home/app/web
@@ -41,10 +36,9 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 # install dependencies
-RUN apk update && apk add libpq
-COPY --from=builder /usr/src/app/wheels /wheels
+RUN apk add --no-cache bash
 COPY --from=builder /usr/src/app/requirements.txt .
-RUN pip install --no-cache /wheels/*
+RUN pip install --no-cache -r requirements.txt
 
 # copy run_django.prod.sh
 COPY ./backend/run_django.prod.sh .
@@ -53,11 +47,6 @@ RUN chmod +x  $APP_HOME/run_django.prod.sh
 # copy project
 COPY . $APP_HOME
 
-# chown all the files to the app user
-RUN chown -R app:app $APP_HOME
-
-# change to the app user
-USER app
 
 # run run_django.prod.sh
 ENTRYPOINT [ "sh", "/home/app/web/run_django.prod.sh" ]

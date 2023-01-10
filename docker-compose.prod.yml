@@ -5,11 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prod
-    command: bash -x "cd backend && gunicorn backend.wsgi:application --bind 0.0.0.0:8000" 
+    command: bash -c "cd backend && gunicorn backend.asgi:application --bind 0.0.0.0:8000 -k uvicorn.workers.UvicornWorker" 
     volumes:
       - ./backend/:/usr/src/backend/
-    ports:
-      - 8000:8000
+    expose:
+      - 8000
     env_file:
       - ./.env.prod
     depends_on:
@@ -31,13 +31,25 @@ services:
       dockerfile: Dockerfile
       context: ./frontend
     container_name: node_front
-    command: bash -c "cp -r /usr/src/cache/node_modules/. /node_modules/ && npm start"
+    command: serve -s build
     volumes:
-      - ./frontend:/node
-    ports:
-      - "3000:3000"
+      - ./frontend:/code
+    expose:
+      - 3000
     env_file:
       - ./.env
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+      - "8000:8000"
+    depends_on:
+      web:
+        condition: service_started
+      frontend:
+        condition: service_started
 
 volumes:
   postgres_data:
