@@ -41,7 +41,7 @@ COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --no-cache -r requirements.txt
 
 # copy run_django.prod.sh
-COPY ./backend/run_django.prod.sh .
+COPY ./run_django.prod.sh .
 RUN chmod +x  $APP_HOME/run_django.prod.sh
 
 # copy project

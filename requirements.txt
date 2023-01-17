@@ -7,3 +7,4 @@ markdown==3.4.1
 django-filter==22.1
 channels[daphne]==4.0.0
 channels-redis==4.0.0
+whitenoise==6.3.0

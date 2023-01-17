@@ -1,0 +1,8 @@
+venv
+.idea
+**/__pycache__
+**/node_modules
+*.sqlite3
+.env
+frontend/build
+static

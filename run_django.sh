@@ -12,9 +12,9 @@ then
     echo $(ls)
 fi
 
-python ./backend/manage.py flush --noinput;
-python ./backend/manage.py makemigrations;
-python ./backend/manage.py migrate;
-python ./backend/manage.py runserver 0.0.0.0:8000;
+python manage.py flush --noinput;
+python manage.py makemigrations;
+python manage.py migrate;
+python manage.py runserver 0.0.0.0:8000;
 
 exec "$@"

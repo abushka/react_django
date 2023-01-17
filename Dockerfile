@@ -16,7 +16,7 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 # copy run_django.sh
-COPY ./backend/run_django.sh .
+COPY ./run_django.sh .
 
 RUN chmod +x ./run_django.sh
 

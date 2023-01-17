@@ -1,0 +1,15 @@
+services:
+  web:
+    volumes:
+      - .:/usr/src/
+    ports:
+      - 8000:8000
+  frontend:
+    command: bash -c "cp -r /usr/src/cache/node_modules/. /node_modules/ && npm start"
+    volumes:
+      - ./frontend:/node
+    ports:
+      - "3000:3000"
+  db:
+    ports:
+      - 5432:5432

@@ -5,9 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.prod
-    command: bash -c "cd backend && gunicorn backend.asgi:application --bind 0.0.0.0:8000 -k uvicorn.workers.UvicornWorker" 
-    volumes:
-      - ./backend/:/usr/src/backend/
+    command: bash -c "gunicorn backend.asgi:application --bind 0.0.0.0:8000 -k uvicorn.workers.UvicornWorker" 
     expose:
       - 8000
     env_file:
@@ -29,15 +27,12 @@ services:
   frontend:
     build: 
       dockerfile: Dockerfile
-      context: ./frontend
-    container_name: node_front
+      context: frontend
     command: serve -s build
-    volumes:
-      - ./frontend:/code
     expose:
       - 3000
     env_file:
-      - ./.env
+      - .env
   nginx:
     image: nginx
     volumes:

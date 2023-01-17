@@ -4,14 +4,12 @@ services:
   web:
     build: .
     # command: ./run_django.sh
-    volumes:
-      - ./backend/:/usr/src/backend/
-    ports:
-      - 8000:8000
     env_file:
       - ./.env
     depends_on:
       - db
+    ports:
+      - 8000:8000
   db:
     image: postgres:12
     volumes:
@@ -20,22 +18,12 @@ services:
       - POSTGRES_USER=backend_django
       - POSTGRES_PASSWORD=backend_django
       - POSTGRES_DB=backend_django
-
   redis:
     image: redis:6
-    container_name: local_redis
-    ports:
-      - "6379:6379"
   frontend:
     build: 
       dockerfile: local.Dockerfile
       context: ./frontend
-    container_name: node_front
-    command: bash -c "cp -r /usr/src/cache/node_modules/. /node_modules/ && npm start"
-    volumes:
-      - ./frontend:/node
-    ports:
-      - "3000:3000"
     env_file:
       - ./.env
 
