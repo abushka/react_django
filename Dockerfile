@@ -23,7 +23,6 @@ RUN chmod +x ./run_django.sh
 # copy project
 COPY . /code/
 
-
 # run run_django.sh
 ENTRYPOINT [ "sh", "./run_django.sh" ]
 
