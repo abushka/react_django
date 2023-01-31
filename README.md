@@ -12,6 +12,7 @@ React (хотя там и typescript проскальзывает)
 Всё это дело в docker compose естественно
 
 Локально React должен использовать npm start, а Django runserver
+
 Для прода React должен использовать pm2 или serve, в Django gunicorn
 
 Статические файлы Django будет где угодно, но не в джанге
