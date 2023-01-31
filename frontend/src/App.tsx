@@ -6,8 +6,8 @@ export default function App() {
   const [messageHistory, setMessageHistory] = useState<any>([]);
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
-
-  const { readyState, sendJsonMessage } = useWebSocket("ws://127.0.0.1:8000/", {
+  const apiHost = `${!!(process.env.REACT_APP_API_HOST)?process.env.REACT_APP_API_HOST:window.location.host+"8000"}`
+  const { readyState, sendJsonMessage } = useWebSocket(`ws://${apiHost}/`, {
     onOpen: () => {
       console.log("Connected!");
     },
