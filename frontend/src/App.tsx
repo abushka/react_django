@@ -90,8 +90,4 @@ export default function App() {
       </ul>
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 6d988c676b04acddddd9400a9b3f8077c1be6831
