@@ -12,7 +12,6 @@ class ChatConsumer(JsonWebsocketConsumer):
         super().__init__(args, kwargs)
         self.room_name = None
 
-
     def connect(self):
         print("Connected!")
         self.room_name = "home"
