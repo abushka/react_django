@@ -20,8 +20,7 @@ jobs:
       OCI_CLI_KEY_CONTENT: ${{ secrets.OCI_CLI_KEY_CONTENT }}
       OCI_CLI_REGION: ${{ secrets.OCI_CLI_REGION }}
     steps:
-      - name: Build the stack
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Get or create an OCIR Repository
         uses: oracle-actions/get-ocir-repository@v1.2
         id: get-ocir-repository
