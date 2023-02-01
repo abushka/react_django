@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    # command: ./run_django.sh
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+  db:
+    image: postgres:12
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=backend_django
+      - POSTGRES_PASSWORD=backend_django
+      - POSTGRES_DB=backend_django
+  redis:
+    image: redis:6
+  frontend:
+    build: 
+      dockerfile: local.Dockerfile
+      context: ./frontend
+    env_file:
+      - ./.env
+
+volumes:
+  postgres_data:
