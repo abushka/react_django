@@ -36,6 +36,10 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 # install dependencies
+RUN apk update && apk add python3-dev \
+                          gcc \
+                          libc-dev \
+                          libffi-dev
 RUN apk add --no-cache bash
 COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --no-cache -r requirements.txt

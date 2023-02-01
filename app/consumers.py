@@ -12,6 +12,7 @@ class ChatConsumer(JsonWebsocketConsumer):
         super().__init__(args, kwargs)
         self.room_name = None
 
+
     def connect(self):
         print("Connected!")
         self.room_name = "home"
@@ -44,6 +45,9 @@ class ChatConsumer(JsonWebsocketConsumer):
             )
         return super().receive_json(content, **kwargs)
 
+    def chat_message_echo(self, event):
+        print(event)
+        self.send_json(event)
     def chat_message_echo(self, event):
         print(event)
         self.send_json(event)
