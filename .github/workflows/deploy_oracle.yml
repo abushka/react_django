@@ -11,8 +11,6 @@ env:
   DOCKER_IMAGE_TAG_1: web
   DOCKER_IMAGE_TAG_2: frontend
 
-
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
