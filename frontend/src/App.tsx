@@ -6,8 +6,8 @@ export default function App() {
   const [messageHistory, setMessageHistory] = useState<any>([]);
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
-  const apiHost = `${!!(process.env.REACT_APP_API_HOST)?process.env.REACT_APP_API_HOST:window.location.host+"8000"}`
-  const { readyState, sendJsonMessage } = useWebSocket(`ws://${apiHost}/`, {
+  const apiHost = `${!!(process.env.REACT_APP_API_HOST)?process.env.REACT_APP_API_HOST:"back."+window.location.hostname+""}`
+  const { readyState, sendJsonMessage } = useWebSocket(`wss://${apiHost}/`, {
     onOpen: () => {
       console.log("Connected!");
     },
