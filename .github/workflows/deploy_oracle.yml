@@ -3,12 +3,15 @@ name: Deploy to Oracle Cloud
 on:
   push:
     branches:
-      - main
+      - prod
 
 env:
   ORACLE_REGISTRY_EMAIL: ${{ secrets.ORACLE_REGISTRY_EMAIL }}
   ORACLE_REGISTRY_PASSWORD: ${{ secrets.ORACLE_REGISTRY_PASSWORD }}
-  DOCKER_IMAGE_TAG: latest
+  DOCKER_IMAGE_TAG:
+    - web
+    - frontend
+
 
 jobs:
   build-and-deploy:
