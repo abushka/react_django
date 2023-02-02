@@ -39,7 +39,8 @@ jobs:
           ${{ secrets.DOCKERHUB_USERNAME }}/django_react:${{ env.DOCKER_IMAGE_TAG_2 }}
 
 
-      uses: oracle-actions/run-oci-cli-command@v1.1
     - name: Deploy to Oracle Cloud
-      run: |
-        oci --v
+      uses: oracle-actions/run-oci-cli-command@v1.1
+      with:
+        run: |
+          oci --v
