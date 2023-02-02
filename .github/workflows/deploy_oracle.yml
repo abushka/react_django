@@ -40,6 +40,6 @@ jobs:
 
 
       uses: oracle-actions/run-oci-cli-command@v1.1
-      - name: Deploy to Oracle Cloud
+    - name: Deploy to Oracle Cloud
       run: |
         oci --v
