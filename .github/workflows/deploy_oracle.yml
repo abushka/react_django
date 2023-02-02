@@ -37,6 +37,4 @@ jobs:
     - name: Push Docker image
       uses: docker/push-action@v1
       with:
-        tags: 
-        - ${{ env.DOCKER_IMAGE_TAG_1 }}
-        - ${{ env.DOCKER_IMAGE_TAG_2 }}
+        tags: ${{ env.DOCKER_IMAGE_TAG_1 }}
