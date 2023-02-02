@@ -1,0 +1,38 @@
+name: Deploy to Oracle Cloud
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  ORACLE_REGISTRY_EMAIL: ${{ secrets.ORACLE_REGISTRY_EMAIL }}
+  ORACLE_REGISTRY_PASSWORD: ${{ secrets.ORACLE_REGISTRY_PASSWORD }}
+  DOCKER_IMAGE_TAG: latest
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: ${{ env.DOCKER_IMAGE_TAG }}
+
+    - name: Log in to Oracle Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: container-registry.oracle.com
+        username: ${{ env.ORACLE_REGISTRY_EMAIL }}
+        password: ${{ env.ORACLE_REGISTRY_PASSWORD }}
+
+    - name: Push Docker image
+      uses: docker/push-action@v1
+      with:
+        tags: ${{ env.DOCKER_IMAGE_TAG }}
