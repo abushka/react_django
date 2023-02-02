@@ -10,6 +10,9 @@ env:
   ORACLE_REGISTRY_PASSWORD: ${{ secrets.ORACLE_REGISTRY_PASSWORD }}
   DOCKER_IMAGE_TAG_1: web
   DOCKER_IMAGE_TAG_2: frontend
+  OCI_REGION: ap-osaka-1
+  OCI_COMPARTMENT_ID: ocid1.compartment.oc1..aaaaaaaaug6ru674p6lvjwlhugxkezanhvkmzemn2zszlsk4pomwipbkxpma
+  OCI_AVAILABILITY_DOMAIN: AD-1
 
 jobs:
   build-and-deploy:
@@ -34,3 +37,8 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/django_react:${{ env.DOCKER_IMAGE_TAG_1 }}
           ${{ secrets.DOCKERHUB_USERNAME }}/django_react:${{ env.DOCKER_IMAGE_TAG_2 }}
+    - name: Deploy to Oracle Cloud
+      run: |
+        oci setup config --profile default --region $OCI_REGION
+        oci compute image import --file Dockerfile --name myimage --compartment-id $OCI_COMPARTMENT_ID --operating-system "Linux" --operating-system-version "7.8" --wait-until-active
+        oci compute instance launch --compartment-id $OCI_COMPARTMENT_ID --availability-domain $OCI_AVAILABILITY_DOMAIN --display-name "myinstance" --image-id ocid1.instance.oc1.ap-osaka-1.anvwsljrvvonctqcmldkc6rgfyyzh5vs22ibgwszocurmp6ikbdykcy7quia --instance-type "VM.Standard.A1.Flex" --subnet-id ocid1.subnet.oc1.ap-osaka-1.aaaaaaaaympmjtohef5bzxcx2mrpufcb7ugyom6vvdcca7zstgycraebgqua
