@@ -8,9 +8,8 @@ on:
 env:
   ORACLE_REGISTRY_EMAIL: ${{ secrets.ORACLE_REGISTRY_EMAIL }}
   ORACLE_REGISTRY_PASSWORD: ${{ secrets.ORACLE_REGISTRY_PASSWORD }}
-  DOCKER_IMAGE_TAG:
-    - web
-    - frontend
+  DOCKER_IMAGE_TAG_1: web
+  DOCKER_IMAGE_TAG_2: frontend
 
 
 jobs:
