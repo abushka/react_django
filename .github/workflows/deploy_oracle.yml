@@ -37,6 +37,14 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/django_react:${{ env.DOCKER_IMAGE_TAG_1 }}
           ${{ secrets.DOCKERHUB_USERNAME }}/django_react:${{ env.DOCKER_IMAGE_TAG_2 }}
+    
+    name: Install OCI CLI
+    run: |
+      sudo apt-get update
+      sudo apt-get install -y unzip
+      curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh > install.sh
+      bash install.sh --accept-all-defaults
+    
     - name: Deploy to Oracle Cloud
       run: |
         oci setup config --profile default --region ${{ env.OCI_REGION }}
