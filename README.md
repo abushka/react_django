@@ -55,6 +55,6 @@ React (хотя там и typescript проскальзывает)
 
 `docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d build`
 
-- выключение в проде
+выключение в проде
 
 `docker compose -f docker-compose.yml -f docker-compose.prod.yml down`
