@@ -37,3 +37,15 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/django_react:${{ env.DOCKER_IMAGE_TAG_1 }}
           ${{ secrets.DOCKERHUB_USERNAME }}/django_react:${{ env.DOCKER_IMAGE_TAG_2 }}
+
+    - name: Login to Oracle Cloud
+      uses: docker/login-action@v1
+      with:
+        registry: "oci"
+        username: ${{ env.ORACLE_REGISTRY_EMAIL }}
+        password: ${{ env.ORACLE_REGISTRY_PASSWORD }}
+    
+    - name: Push to Oracle Cloud
+      run: |
+        docker tag ${{ secrets.DOCKERHUB_USERNAME }}/django_react myregistry.ocir.io/mynamespace/myimage
+        docker push myregistry.ocir.io/mynamespace/myimage
