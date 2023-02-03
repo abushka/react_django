@@ -28,21 +28,21 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Push Docker image
-      id: docker_build
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        push: true
-        tags: |
-          ${{ secrets.DOCKERHUB_USERNAME }}/django_react:${{ env.DOCKER_IMAGE_TAG_1 }}
-          ${{ secrets.DOCKERHUB_USERNAME }}/django_react:${{ env.DOCKER_IMAGE_TAG_2 }}
+    # - name: Push Docker image
+    #   id: docker_build
+    #   uses: docker/build-push-action@v2
+    #   with:
+    #     context: .
+    #     push: true
+    #     tags: |
+    #       ${{ secrets.DOCKERHUB_USERNAME }}/django_react:${{ env.DOCKER_IMAGE_TAG_1 }}
+    #       ${{ secrets.DOCKERHUB_USERNAME }}/django_react:${{ env.DOCKER_IMAGE_TAG_2 }}
 
     - name: Login to Oracle Cloud
       uses: docker/login-action@v2
       with:
         registry: ${{ env.OCI_REGION }}.ocir.io
-        username: abushka/abushkasunntovsss@gmail.com
+        username: abushkasunntovsss/abushkasunntovsss@gmail.com
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Push to Oracle Cloud
