@@ -38,17 +38,23 @@ React (хотя там и typescript проскальзывает)
 - Запуск очень прост
 
 `docker compose up -d build`
+
 или
+
 `docker compose -f docker-compose.yml -f docker-compose.override.yml up -d build`
 
 - Вырубить всё также просто
 
 `docker compose down`
+
 или
+
 `docker compose -f docker-compose.yml -f docker-compose.override.yml down -v`
 
 - Запуск для прода
 
 `docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d build`
+
 - выключение в проде
+
 `docker compose -f docker-compose.yml -f docker-compose.prod.yml down`
