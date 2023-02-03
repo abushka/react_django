@@ -42,7 +42,7 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: ${{ env.OCI_REGION }}.ocir.io
-        username: abushkasunntovsss/abushkasunntovsss@gmail.com
+        username: axnlgidkiqam/abushkasunntovsss@gmail.com
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Push to Oracle Cloud
