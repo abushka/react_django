@@ -13,6 +13,7 @@ env:
   OCI_REGION: ap-osaka-1
   OCI_COMPARTMENT_ID: ocid1.compartment.oc1..aaaaaaaaug6ru674p6lvjwlhugxkezanhvkmzemn2zszlsk4pomwipbkxpma
   OCI_AVAILABILITY_DOMAIN: AD-1
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
 jobs:
   build-and-deploy:
@@ -47,5 +48,5 @@ jobs:
     
     - name: Push to Oracle Cloud
       run: |
-        docker tag ${{ secrets.DOCKERHUB_USERNAME }}/django_react ${{ env.OCI_REGION }}.ocir.io/aaaaaaaaz43obwqdygm47zpwhr4c3sfvumypx4j4wfonbu4kx6v73k6dznjq/react_django
+        docker tag ${{ env.DOCKERHUB_USERNAME }}/django_react ${{ env.OCI_REGION }}.ocir.io/aaaaaaaaz43obwqdygm47zpwhr4c3sfvumypx4j4wfonbu4kx6v73k6dznjq/react_django
         docker push ${{ env.OCI_REGION }}.ocir.io/aaaaaaaaz43obwqdygm47zpwhr4c3sfvumypx4j4wfonbu4kx6v73k6dznjq/react_django
