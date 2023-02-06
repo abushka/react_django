@@ -21,6 +21,7 @@ COPY ./run_django.sh .
 RUN chmod +x ./run_django.sh
 
 # copy project
+# test
 COPY . /code/
 
 # run run_django.sh
