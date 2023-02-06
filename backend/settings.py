@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "back.abushka.uz", "138.2.
 
 INSTALLED_APPS = [
     'daphne',
+    'corsheaders',
     'channels',
     'app',
     'rest_framework',
@@ -48,12 +49,15 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app.middleware.corsMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -133,6 +137,20 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+# CORS_URLS_REGEX = r"^/api/.*$"  # replace this line
+CORS_ALLOWED_ORIGINS = [
+    "https://abushka.uz",
+    "https://abushka.uz/auth-token/",
+    "https://back.abushka.uz/",
+    "https://back.abushka.uz/auth-token/",
+    'http://localhost',
+    "http://127.0.0.1:8000",
+    ]  # add this line
+
+# CORS_ALLOWED_ORIGIN_REGEXES = [
+#     r"^https://\w+\.abushka\.uz$",
+# ]
 
 
 REST_FRAMEWORK = {

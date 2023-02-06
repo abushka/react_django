@@ -29,11 +29,12 @@ django_application = get_asgi_application()
 from routing import websocket_urlpatterns  # noqa isort:skip
 
 from channels.routing import ProtocolTypeRouter, URLRouter  # noqa isort:skip
+from app.middleware import TokenAuthMiddleware
 
 
 application = ProtocolTypeRouter(
     {
         "http": get_asgi_application(),
-        "websocket":URLRouter(websocket_urlpatterns),
+        "websocket":TokenAuthMiddleware(URLRouter(websocket_urlpatterns)),
     }
 )

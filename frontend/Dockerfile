@@ -5,6 +5,9 @@ WORKDIR /code
 COPY package*.json ./
 
 RUN npm install
+RUN npm install react-router-dom
+RUN npm install formik --save
+RUN npm install axios
 
 COPY . .
 
