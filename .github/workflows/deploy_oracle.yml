@@ -49,4 +49,4 @@ jobs:
     - name: Push to Oracle Cloud
       run: |
         docker tag ${{ env.DOCKERHUB_USERNAME }}/django_react:web ${{ env.OCI_REGION }}.ocir.io/aaaaaaaaz43obwqdygm47zpwhr4c3sfvumypx4j4wfonbu4kx6v73k6dznjq/react_django:web
-        docker push ${{ env.OCI_REGION }}.ocir.io/aaaaaaaaz43obwqdygm47zpwhr4c3sfvumypx4j4wfonbu4kx6v73k6dznjq/react_django:web
+        docker push ${{ env.OCI_REGION }}.ocir.io/aaaaaaaaz43obwqdygm47zpwhr4c3sfvumypx4j4wfonbu4kx6v73k6dznjq/react_django
