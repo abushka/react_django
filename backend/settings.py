@@ -26,17 +26,15 @@ SECRET_KEY = 'django-insecure-d5kr4s4uou2&yd$65c8(r*j))fl_#po9@*$sztsqotwn2)dkw4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "back.abushka.uz", "138.2.48.153"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "https://abushka.uz"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'daphne',
-    'corsheaders',
     'channels',
     'app',
-    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,20 +42,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'corsheaders', # cors
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'app.middleware.corsMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -147,6 +145,13 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost',
     "http://127.0.0.1:8000",
     ]  # add this line
+
+
+CORS_TRUSTED_ORIGINS = [
+    'http://localhost',
+    "http://127.0.0.1:8000",
+    ]  # add this line
+
 
 # CORS_ALLOWED_ORIGIN_REGEXES = [
 #     r"^https://\w+\.abushka\.uz$",
