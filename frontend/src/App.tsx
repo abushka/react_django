@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { ActiveConversations } from "./components/ActiveConversations";
+import { ActiveConversations } from "./components/ActiveConversations";
 import { Chat } from "./components/Chat";
 import { Conversations } from "./components/Conversations";
 import { Login } from "./components/Login";
 import { Navbar } from "./components/Navbar";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AuthContextProvider } from "./contexts/AuthContext";
-// import { NotificationContextProvider } from "./contexts/NotificationContext";
+import { NotificationContextProvider } from "./contexts/NotificationContext";
 
 export default function App() {
   return (
@@ -17,9 +17,9 @@ export default function App() {
           path="/"
           element={
             <AuthContextProvider>
-              {/* <NotificationContextProvider> */}
+              <NotificationContextProvider>
                 <Navbar />
-              {/* </NotificationContextProvider> */}
+              </NotificationContextProvider>
             </AuthContextProvider>
           }
         >
@@ -35,7 +35,7 @@ export default function App() {
             path="Conversations/"
             element={
               <ProtectedRoute>
-                {/* <ActiveConversations /> */}
+                <ActiveConversations />
               </ProtectedRoute>
             }
           />

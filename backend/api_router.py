@@ -9,7 +9,7 @@ if settings.DEBUG:
 else:
     router = SimpleRouter()
 
-router.register(r'Conversations', CustomObtainAuthTokenView, basename='CustomObtainAuthTokenView')
+router.register(r'conversations', CustomObtainAuthTokenView, basename='CustomObtainAuthTokenView')
 router.register(r'users', UserViewSet, basename='UserViewSet')
 router.register(r'messages', MessageViewSet, basename='messages')
 
