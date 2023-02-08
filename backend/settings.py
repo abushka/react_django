@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-d5kr4s4uou2&yd$65c8(r*j))fl_#po9@*$sztsqotwn2)dkw4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "https://abushka.uz"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "https://abushka.uz", "back.abushka.uz"]
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders', # cors
     'rest_framework',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -139,9 +140,6 @@ USE_TZ = True
 # CORS_URLS_REGEX = r"^/api/.*$"  # replace this line
 CORS_ALLOWED_ORIGINS = [
     "https://abushka.uz",
-    "https://abushka.uz/auth-token/",
-    "https://back.abushka.uz/",
-    "https://back.abushka.uz/auth-token/",
     'http://localhost',
     "http://127.0.0.1:8000",
     ]  # add this line

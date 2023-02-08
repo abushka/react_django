@@ -1,10 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { ActiveConversations } from "./components/ActiveConversations";
 import { Chat } from "./components/Chat";
+import { Conversations } from "./components/Conversations";
 import { Login } from "./components/Login";
 import { Navbar } from "./components/Navbar";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AuthContextProvider } from "./contexts/AuthContext";
-import { ProtectedRoute } from "./components/ProtectedRoute"
+// import { NotificationContextProvider } from "./contexts/NotificationContext";
 
 export default function App() {
   return (
@@ -14,7 +17,9 @@ export default function App() {
           path="/"
           element={
             <AuthContextProvider>
-              <Navbar />
+              {/* <NotificationContextProvider> */}
+                <Navbar />
+              {/* </NotificationContextProvider> */}
             </AuthContextProvider>
           }
         >
@@ -22,12 +27,20 @@ export default function App() {
             path=""
             element={
               <ProtectedRoute>
-                {/* <Conversations /> */}
+                <Conversations />
               </ProtectedRoute>
             }
           />
           <Route
-            path="chats/:conversationName"
+            path="Conversations/"
+            element={
+              <ProtectedRoute>
+                {/* <ActiveConversations /> */}
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="chats/:ConversationName"
             element={
               <ProtectedRoute>
                 <Chat />
