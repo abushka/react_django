@@ -32,7 +32,7 @@ export default function App() {
             }
           />
           <Route
-            path="Conversations/"
+            path="conversations/"
             element={
               <ProtectedRoute>
                 <ActiveConversations />
@@ -40,7 +40,7 @@ export default function App() {
             }
           />
           <Route
-            path="chats/:ConversationName"
+            path="chats/:conversationName"
             element={
               <ProtectedRoute>
                 <Chat />
