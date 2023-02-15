@@ -6,10 +6,11 @@ import { ConversationModel } from "../models/Conversation";
 export function ActiveConversations() {
   const { user } = useContext(AuthContext);
   const [conversations, setActiveConversations] = useState<ConversationModel[]>([]);
+  const apiHost = `${!!(process.env.REACT_APP_API_HOST)?process.env.REACT_APP_API_HOST:"back."+window.location.hostname+""}`
 
   useEffect(() => {
     async function fetchUsers() {
-      const res = await fetch("http://127.0.0.1:8000/api/conversations/", {
+      const res = await fetch(`https://${apiHost}/api/conversations/`, {
         headers: {
           Authorization: `Token ${user?.token}`
         }

@@ -1,18 +1,18 @@
-from .models import CustomUser
-from django.utils.translation import gettext_lazy as _
-from rest_framework.exceptions import AuthenticationFailed
 from urllib.parse import parse_qs
 from channels.db import database_sync_to_async
 
+from .models import CustomUser
+from django.utils.translation import gettext_lazy as _
+from rest_framework.exceptions import AuthenticationFailed
+
+User = CustomUser
 
 
 class TokenAuthentication:
     """
     Simple token based authentication.
-
     Clients should authenticate by passing the token key in the query parameters.
     For example:
-
         ?token=401f7ac837da42b97f613d789819ff93537bee6a
     """
 
@@ -22,11 +22,11 @@ class TokenAuthentication:
         if self.model is not None:
             return self.model
         from rest_framework.authtoken.models import Token
+
         return Token
 
     """
     A custom token model may be used, but must have the following properties.
-
     * key -- The string identifying the token
     * user -- The user to which the token belongs
     """
@@ -42,7 +42,6 @@ class TokenAuthentication:
             raise AuthenticationFailed(_("User inactive or deleted."))
 
         return token.user
-
 
 
 @database_sync_to_async
@@ -72,7 +71,8 @@ def get_user(scope):
 
 class TokenAuthMiddleware:
     """
-    Custom middleware that takes a token from the query string and authenticates via Django Rest Framework authtoken.
+    Custom middleware that takes a token from the query string and authenticates via
+    Django Rest Framework authtoken.
     """
 
     def __init__(self, app):
